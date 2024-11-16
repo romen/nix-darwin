@@ -440,5 +440,13 @@ in {
       '';
     };
 
+    system.defaults.NSGlobalDomain.NSQuitAlwaysKeepsWindows = mkOption {
+      type = types.nullOr types.bool;
+      default = null;
+      description = ''
+        This is the inverse of System Settings > Desktop & Dock > "Close windows when quitting an app".
+      '';
+    };
+
   };
 }
