@@ -96,6 +96,12 @@ in
       '';
     };
 
+    programs.zsh.completionInit = mkOption {
+      type = types.lines;
+      default = "autoload -U compinit && compinit";
+      description = "Initialization commands to run when completion is enabled.";
+    };
+
     programs.zsh.enableFzfCompletion = mkOption {
       type = types.bool;
       default = false;
@@ -216,7 +222,7 @@ in
 
       ${cfg.promptInit}
 
-      ${optionalString cfg.enableGlobalCompInit "autoload -U compinit && compinit"}
+      ${optionalString cfg.enableGlobalCompInit cfg.completionInit}
       ${optionalString cfg.enableBashCompletion "autoload -U bashcompinit && bashcompinit"}
 
       ${optionalString cfg.enableAutosuggestions
